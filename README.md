@@ -10,6 +10,8 @@
 [![Vercel Ready](https://img.shields.io/badge/Deploy-Vercel_Ready-000000?logo=vercel&logoColor=white)](https://vercel.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdivyamgoel2005%2FVocaMind&env=GROQ_API_KEY&envDescription=API%20key%20for%20Groq%20LPU%20Cloud%20inference&project-name=vocamind)
+
 ---
 
 ## 🌟 Overview
