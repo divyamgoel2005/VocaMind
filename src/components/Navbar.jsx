@@ -27,7 +27,7 @@ export default function Navbar({
               </span>
             </div>
             <span className="text-[11px] text-[#64748B] font-medium hidden sm:block">
-              Deep Learning Voice Assistant
+              Universal Voice AI Assistant
             </span>
           </div>
         </div>

@@ -25,7 +25,7 @@ export default function App() {
   const initialGreeting = {
     id: 'welcome-msg',
     role: 'assistant',
-    text: "Hello! I am VocaMind, your voice-enabled AI assistant. Just tap the microphone below and speak naturally — I'll detect when your sentence finishes and speak the answer back to you.",
+    text: "Hello! I am VocaMind, your voice-enabled AI assistant. Ask me anything—from science and programming to history, creativity, and daily life. Just tap the microphone and speak naturally—I'll detect when your sentence finishes and speak the answer aloud.",
     timestamp: 'Just now',
     intent: 'greeting',
     confidence: 0.99,

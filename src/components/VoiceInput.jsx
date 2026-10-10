@@ -229,9 +229,10 @@ export default function VoiceInput({
                 Try:
               </span>
               {[
-                'Explain how neural networks learn',
-                'What is backpropagation?',
-                'How do transformers work?',
+                'Explain how planes fly',
+                'Write a short poem about the ocean',
+                'How does GPS work?',
+                'Tell me an interesting history fact',
               ].map((prompt, idx) => (
                 <button
                   key={idx}

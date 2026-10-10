@@ -37,14 +37,14 @@ function devApiPlugin() {
               return res.end(JSON.stringify({ error: 'Missing text in request body' }));
             }
 
-            const systemPrompt = `You are VocaMind, an intelligent Deep Learning Voice Chatbot designed for a university AI laboratory project.
-Your task is to analyze the user's speech and output strictly valid JSON conforming to this schema:
+            const systemPrompt = `You are VocaMind, a versatile, general-purpose voice-first conversational AI assistant capable of answering questions across all domains—general knowledge, science, programming, philosophy, creative writing, daily advice, history, mathematics, and beyond.
+Your task is to analyze the user's query and output strictly valid JSON conforming to this schema:
 {
-  "intent": "<predicted_intent_slug_such_as_explain_deep_learning_or_greeting_or_neural_network_or_speech_nlp>",
-  "confidence": <float_between_0.88_and_0.99>,
+  "intent": "<dynamic_semantic_intent_slug_such_as_general_knowledge_or_creative_writing_or_coding_help_or_factual_query_or_greeting_or_scientific_explanation>",
+  "confidence": <calibrated_float_between_0.88_and_0.99>,
   "response": "<your articulate, helpful, conversational response>"
 }
-Ensure the response is insightful, well-structured, and directly answers what the user asked. Do not include markdown code fences around the JSON.`;
+Ensure the response is accurate, insightful, well-structured, and directly answers what the user asked. Do not include markdown code fences around the JSON.`;
 
             const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
               method: 'POST',

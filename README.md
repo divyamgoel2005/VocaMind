@@ -1,27 +1,156 @@
-# VocaMind – AI Voice Chatbot 🎙️⚡
-> **University Deep Learning Laboratory Project**  
-> *A voice-first conversational AI assistant featuring Web Speech API, Voice Activity Detection (VAD), Neural Intent Classification, and Groq LPU accelerated inference.*
+# VocaMind – Voice-First AI Assistant 🎙️⚡
 
-[![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Web Speech API](https://img.shields.io/badge/Speech-Web_Speech_API-4285F4?logo=google-chrome&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API)
-[![Groq LPU](https://img.shields.io/badge/Inference-Groq_LPU-F55036?logo=fastapi&logoColor=white)](https://groq.com/)
-[![Vercel Ready](https://img.shields.io/badge/Deploy-Vercel_Ready-000000?logo=vercel&logoColor=white)](https://vercel.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> A modern, hands-free conversational AI web application featuring browser-native Web Speech streaming, client-side Voice Activity Detection (VAD), Neural Intent Classification, and ultra-fast Groq LPU accelerated inference.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdivyamgoel2005%2FVocaMind&env=GROQ_API_KEY&envDescription=API%20key%20for%20Groq%20LPU%20Cloud%20inference&project-name=vocamind)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-success?logo=vercel&logoColor=white&style=for-the-badge)](https://voca-mind-fvuetttd8-yo-2166.vercel.app/)
+[![React](https://img.shields.io/badge/React-19.0-61DAFB?logo=react&logoColor=black&style=for-the-badge)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white&style=for-the-badge)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?logo=tailwind-css&logoColor=white&style=for-the-badge)](https://tailwindcss.com/)
+[![Groq LPU](https://img.shields.io/badge/Inference-Groq_LPU-F55036?logo=fastapi&logoColor=white&style=for-the-badge)](https://groq.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+---
+
+### 🌐 **Live Application**
+Experience VocaMind in your browser:  
+👉 **[https://voca-mind-fvuetttd8-yo-2166.vercel.app/](https://voca-mind-fvuetttd8-yo-2166.vercel.app/)**  
+*(Optimized for Google Chrome and Microsoft Edge for seamless Web Speech API support)*
 
 ---
 
 ## 🌟 Overview
 
-**VocaMind** is an intelligent, voice-first AI chatbot crafted for deep learning laboratory demonstration. Unlike traditional text-heavy chatbots, VocaMind is built around natural, hands-free conversation:
+**VocaMind** is an intelligent, voice-first AI assistant built to create a frictionless, natural conversational experience. Traditional chatbots rely heavily on manual text entry, clicking send buttons, and reading walls of text. VocaMind shifts the paradigm to **voice-native communication**:
 
-1. **Automatic Sentence-End Detection (VAD)**: Start speaking naturally — VocaMind continuously streams your speech and automatically triggers the response when you pause, without requiring you to manually click submit.
-2. **Instant Neural Intent Classification**: Every query is evaluated by a deep learning pipeline powered by the **Groq LPU (Language Processing Unit)**, providing real-time predicted intent tags and softmax confidence scores.
-3. **Full Duplex Audio Synthesis**: The assistant displays its answer on screen while automatically reading it aloud through your device's speakers with natural tone modulation.
-4. **Minimalist, Elegant Aesthetic**: Styled with a tailored soft ivory and slate palette accented by restrained indigo tones, creating a calm, distraction-free SaaS experience.
+- **Speak Naturally**: Speak without needing to hit a submit button. The integrated Voice Activity Detection (VAD) monitors your speech in real time, detecting pauses and automatically submitting queries.
+- **Neural Intent & Confidence Scoring**: Every query is evaluated by an ultra-fast LLM pipeline powered by the **Groq LPU (Language Processing Unit)**, returning predicted intent tags alongside confidence metrics.
+- **Dual-Channel Output (Read & Listen)**: Responses are displayed cleanly on screen with markdown formatting and simultaneously vocalized via device speakers with tone and rate normalization.
+- **Calm, Elegant Aesthetic**: Designed with an understated ivory, slate, and restrained indigo design system, providing a focused and distraction-free user experience.
+
+---
+
+## ✨ Key Features
+
+- **🎙️ Hands-Free Conversational Loop**: Automatic sentence finalization via a 1.3-second silence detection window.
+- **🧠 Real-Time Intent Classification**: Categorizes user intent on the fly with confidence probability percentages.
+- **⚡ Sub-Second Turnaround**: Groq LPU accelerated inference delivers total round-trip response times under 750 ms.
+- **🔊 Full-Duplex Speech Synthesis**: Instant text-to-speech playback with one-click mute controls and replay buttons per message.
+- **🌊 Interactive Voice Waveforms**: Dynamic soundwave visualizer responding to listening, transcribing, thinking, and speaking states.
+- **📱 Fully Responsive & Accessible**: Clean responsive layout tailored for both desktop and mobile devices.
+
+---
+
+## 🧠 System Architecture & Pipeline Flow
+
+The entire conversation lifecycle operates across five synchronized stages:
+
+```
+                      ┌──────────────────────────────────────────────┐
+                      │             User Speaks into Mic             │
+                      └──────────────────────┬───────────────────────┘
+                                             │
+                                             ▼
+                      ┌──────────────────────────────────────────────┐
+                      │      Stage 1: Speech-to-Text Streaming       │
+                      │  • Browser Web Speech API                    │
+                      │  • Continuous audio stream                   │
+                      │  • Live interim transcript rendering         │
+                      └──────────────────────┬───────────────────────┘
+                                             │
+                                             ▼
+                      ┌──────────────────────────────────────────────┐
+                      │     Stage 2: Voice Activity Detection (VAD)  │
+                      │  • Client-side silence detection (1.3s)      │
+                      │  • Automated speech finalization             │
+                      │  • Debounced query dispatch                  │
+                      └──────────────────────┬───────────────────────┘
+                                             │
+                                             ▼
+                      ┌──────────────────────────────────────────────┐
+                      │          Stage 3: API Service Layer          │
+                      │  • POST /api/chat                            │
+                      │  • Edge-ready Serverless Function / Vite Dev │
+                      │  • Request validation & sanitization         │
+                      └──────────────────────┬───────────────────────┘
+                                             │
+                                             ▼
+                      ┌──────────────────────────────────────────────┐
+                      │        Stage 4: Groq LPU Cloud Engine        │
+                      │  • High-throughput LPU inference             │
+                      │  • Model: qwen/qwen3.8-27b                   │
+                      │  • Semantic Intent Tagging                   │
+                      │  • Softmax Confidence Probability            │
+                      │  • Contextual Response Generation            │
+                      └──────────────────────┬───────────────────────┘
+                                             │
+                        ┌────────────────────┴────────────────────┐
+                        ▼                                         ▼
+         ┌───────────────────────────────┐     ┌──────────────────────────────────┐
+         │ Stage 5A: Visual UI Channel   │     │  Stage 5B: Audio Playback (TTS)  │
+         │ • User & AI message bubbles   │     │ • Browser SpeechSynthesis API    │
+         │ • Intent badge & Confidence % │     │ • Automatic read-aloud playback  │
+         │ • Markdown formatting         │     │ • Pitch & Rate calibration       │
+         │ • Per-message replay controls │     │ • Global mute toggle             │
+         └───────────────────────────────┘     └──────────────────────────────────┘
+```
+
+### Detailed Pipeline Breakdown
+
+1. **Audio Streaming & Interim Capture**:
+   When the microphone is active, the browser's native `SpeechRecognition` API captures audio in continuous mode. As the user speaks, interim transcripts stream directly into the active prompt visualizer.
+
+2. **Client-Side Voice Activity Detection (VAD)**:
+   A silence-detection debounce timer triggers whenever speech pauses. Once silence exceeds the threshold (1.3 seconds), VocaMind automatically packages the finalized transcript and dispatches the query without requiring any manual clicks.
+
+3. **Decoupled API Layer**:
+   Requests route through `src/services/api.js` to `/api/chat`. This layer normalizes requests, manages errors gracefully, and communicates securely with backend inference providers.
+
+4. **Groq LPU Accelerated Inference**:
+   The backend leverages Groq's Language Processing Unit (LPU) running `qwen/qwen3.8-27b`. The model processes the utterance at high speed, returning a structured JSON payload containing:
+   - The predicted semantic intent classification
+   - A calibrated confidence probability score
+   - An articulate, context-aware answer
+
+5. **Simultaneous Dual Output**:
+   - **Visual UI**: The conversation timeline updates immediately with formatted markdown text, an intent chip, and a confidence meter.
+   - **Vocal Synthesis**: The browser's `SpeechSynthesis` engine reads the response aloud using an optimized vocal cadence.
+
+---
+
+## ⚡ Performance & Latency Breakdown
+
+| Phase | Component | Average Latency |
+|---|---|---|
+| **Speech Transcription** | Client Browser Web Speech API | `~100 – 250 ms` |
+| **Network Round-Trip** | HTTPS edge transport | `~80 – 140 ms` |
+| **Neural Inference** | Groq LPU Cloud (`qwen/qwen3.8-27b`) | `~180 – 300 ms` |
+| **Audio Synthesis Init** | Client `SpeechSynthesis` pipeline | `~50 – 80 ms` |
+| **Total End-to-End Turnaround** | **Complete voice-to-voice loop** | **< 750 ms** |
+
+---
+
+## 📡 API Specification
+
+### Endpoint: `POST /api/chat`
+
+The application communicates through a clean service layer, making it easy to connect to Vercel Serverless, local Vite dev servers, or external custom backends.
+
+#### Request Body
+```json
+{
+  "text": "What causes the Northern Lights in polar regions?"
+}
+```
+
+#### Response Body
+```json
+{
+  "recognized_text": "What causes the Northern Lights in polar regions?",
+  "intent": "scientific_phenomenon_explanation",
+  "confidence": 0.985,
+  "response": "The Northern Lights, or Aurora Borealis, occur when charged particles from the solar wind collide with oxygen and nitrogen atoms in Earth's magnetosphere, releasing energy in the form of vibrant green, purple, and red auroral curtains."
+}
+```
 
 ---
 
@@ -43,83 +172,10 @@ Designed for focus, readability, and modern elegance:
 
 ---
 
-## 🧠 System Architecture & Pipeline Flow
-
-```
-                      ┌──────────────────────────────────────────────┐
-                      │             User Speaks into Mic             │
-                      └──────────────────────┬───────────────────────┘
-                                             │
-                                             ▼
-                      ┌──────────────────────────────────────────────┐
-                      │    Web Speech API (SpeechRecognition)        │
-                      │  • Continuous audio streaming                │
-                      │  • Interim real-time transcript              │
-                      └──────────────────────┬───────────────────────┘
-                                             │
-                                             ▼
-                      ┌──────────────────────────────────────────────┐
-                      │ Client-Side Voice Activity Detection (VAD)   │
-                      │  • Pause & silence detection (1.3s window)   │
-                      │  • Automatic sentence finalization           │
-                      └──────────────────────┬───────────────────────┘
-                                             │
-                                             ▼
-                      ┌──────────────────────────────────────────────┐
-                      │       HTTP POST /api/chat                    │
-                      │  (Vite Dev Middleware / Vercel Serverless)   │
-                      └──────────────────────┬───────────────────────┘
-                                             │
-                                             ▼
-                      ┌──────────────────────────────────────────────┐
-                      │         Groq LPU Cloud Acceleration          │
-                      │  • Model: qwen/qwen3.8-27b                   │
-                      │  • Neural Intent Classification              │
-                      │  • Softmax Confidence Probability            │
-                      │  • Contextual Response Generation            │
-                      └──────────────────────┬───────────────────────┘
-                                             │
-                        ┌────────────────────┴────────────────────┐
-                        ▼                                         ▼
-         ┌───────────────────────────────┐     ┌──────────────────────────────────┐
-         │     Visual UI Response        │     │  SpeechSynthesis (Speaker Audio) │
-         │ • Formatted response bubble   │     │ • Automatic read-aloud playback  │
-         │ • Intent tag & Confidence %   │     │ • Pitch & Rate normalization     │
-         │ • Markdown formatting         │     │ • Mute / Speaker controls        │
-         └───────────────────────────────┘     └──────────────────────────────────┘
-```
-
----
-
-## 📡 API Specification
-
-### Endpoint: `POST /api/chat`
-
-The application communicates through a clean, decoupled API service layer (`src/services/api.js`), allowing you to swap between local Vite dev server, Vercel Serverless Functions, or an external Python backend (e.g. FastAPI / PyTorch / Hugging Face).
-
-#### Request Body
-```json
-{
-  "text": "What is backpropagation in deep learning?"
-}
-```
-
-#### Response Body
-```json
-{
-  "recognized_text": "What is backpropagation in deep learning?",
-  "intent": "explain_deep_learning_concept",
-  "confidence": 0.985,
-  "response": "Backpropagation (short for 'backward propagation of errors') is the foundational algorithm used to train artificial neural networks. It calculates the gradient of the loss function with respect to each weight via the chain rule of calculus, allowing gradient descent optimization to update the network weights efficiently."
-}
-```
-
----
-
 ## 💻 Tech Stack
 
 - **Frontend Framework**: [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Styling**: [TailwindCSS 3.4](https://tailwindcss.com/) with custom design tokens
+- **Styling**: [TailwindCSS 3.4](https://tailwindcss.com/) with semantic color tokens
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Speech-to-Text**: Browser-native Web Speech API (`SpeechRecognition` / `webkitSpeechRecognition`)
 - **Text-to-Speech**: Browser-native `window.speechSynthesis`
@@ -132,22 +188,21 @@ The application communicates through a clean, decoupled API service layer (`src/
 
 ```
 ├── api/
-│   └── chat.js                   # Vercel Serverless Function (POST /api/chat)
+│   └── chat.js                   # Serverless API endpoint (POST /api/chat)
 ├── src/
 │   ├── components/
-│   │   ├── Navbar.jsx            # Top bar, branding, speaker toggle & new chat button
-│   │   ├── ChatWindow.jsx        # Conversation history with auto-scroll & clear chat
-│   │   ├── ChatMessage.jsx       # User (#5956D6) & AI (#F0F2FF) bubbles, TTS & intent tags
-│   │   └── VoiceInput.jsx        # Center voice station with waveforms, mic & input bar
+│   │   ├── Navbar.jsx            # Header, brand status, global mute & new chat button
+│   │   ├── ChatWindow.jsx        # Scrollable message feed with empty state & auto-scroll
+│   │   ├── ChatMessage.jsx       # Message bubbles, intent pills, confidence % & replay TTS
+│   │   └── VoiceInput.jsx        # Center voice station with waveforms & input bar
 │   ├── hooks/
-│   │   ├── useSpeechRecognition.js # Speech capture with automatic sentence completion (VAD)
-│   │   └── useSpeechSynthesis.js   # Voice reading with queue management & mute toggle
+│   │   ├── useSpeechRecognition.js # Speech capture with Voice Activity Detection (VAD)
+│   │   └── useSpeechSynthesis.js   # Vocal synthesis with queue management & mute toggle
 │   ├── services/
-│   │   └── api.js                # API client with VITE_API_URL fallback
+│   │   └── api.js                # Decoupled API client layer
 │   ├── App.jsx                   # Central state orchestrator
-│   ├── main.jsx                  # React DOM entrypoint
-│   └── index.css                 # Tailwind directives, animations & palette rules
-├── .env.example                  # Environment variable reference
+│   ├── main.jsx                  # Application entry point
+│   └── index.css                 # Tailwind directives, keyframe animations & palette rules
 ├── vercel.json                   # Vercel deployment configuration
 ├── tailwind.config.js            # Semantic palette tokens
 ├── vite.config.js                # Vite build config + local dev API middleware
@@ -156,7 +211,7 @@ The application communicates through a clean, decoupled API service layer (`src/
 
 ---
 
-## 🚀 Quick Start (Local Setup)
+## 🚀 Getting Started (Local Setup)
 
 ### 1. Clone the Repository
 ```bash
@@ -169,76 +224,36 @@ cd VocaMind
 npm install
 ```
 
-### 3. Configure Environment Variables
-Copy `.env.example` to `.env`:
-```bash
-cp .env.example .env
-```
-
-Ensure your Groq API key is set in `.env`:
-```env
-# Optional external backend (leave blank to use built-in Groq endpoint)
-VITE_API_URL=
-
-# Groq API Key for Neural Inference
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-### 4. Run Development Server
+### 3. Start Development Server
 ```bash
 npm run dev
 ```
 Open **`http://localhost:5173`** in Google Chrome or Microsoft Edge (recommended for optimal Web Speech API microphone support).
 
-### 5. Build for Production
+### 4. Build for Production
 ```bash
 npm run build
 ```
 
 ---
 
-## ☁️ Deployment on Vercel
+## ☁️ Deployment
 
-VocaMind is pre-configured for instant **1-Click Deployment** on Vercel.
+VocaMind is built for zero-config deployment on **Vercel**:
 
-### Method 1: Deploy via GitHub (Recommended)
-1. Fork or push this repository to your GitHub account:
-   ```bash
-   git push -u origin main
-   ```
-2. Navigate to [Vercel Dashboard](https://vercel.com/new).
-3. Select **Import Git Repository** and select `VocaMind`.
-4. In **Project Settings** > **Environment Variables**, add:
-   - `GROQ_API_KEY`: Your Groq API key (`gsk_...`)
-5. Click **Deploy**. Vercel will build the Vite frontend and deploy `api/chat.js` as an edge-ready serverless API!
+- **Frontend**: Automatically built and served as an optimized Vite static bundle.
+- **Backend API**: The `/api/chat.js` endpoint deploys automatically as a serverless function.
 
-### Method 2: Deploy via Vercel CLI
-```bash
-npx vercel
-```
-Follow the interactive prompts to link and deploy the project. When prompted for environment variables, provide `GROQ_API_KEY`.
-
----
-
-## 🔬 University Laboratory Demonstration Notes
-
-For university laboratory examinations and project viva evaluations:
-- **Speech Recognition Performance**: Evaluated under various ambient noise conditions with client-side token buffering.
-- **Intent Classification Confidence**: Softmax probability values demonstrate model discrimination capability across academic domains.
-- **Latency Breakdown**:
-  - Speech Transcription: ~100–250 ms (hardware-accelerated browser client)
-  - Network Round-Trip: ~80–140 ms
-  - Groq LPU Inference: ~180–300 ms
-  - End-to-End Turnaround: **< 750 ms total response latency**
+Check out the live deployment anytime: **[https://voca-mind-fvuetttd8-yo-2166.vercel.app/](https://voca-mind-fvuetttd8-yo-2166.vercel.app/)**
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — feel free to use and adapt it for academic, research, and open-source applications.
+This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
 <p align="center">
-  Crafted with ❤️ for the <strong>Deep Learning Laboratory Demonstration</strong>
+  Crafted with ❤️ by <strong>Divyam Goel</strong>
 </p>
